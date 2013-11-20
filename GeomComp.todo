@@ -1,0 +1,51 @@
+Requirements/Need:
+  ☐ System must be able to run different algorithms
+    ☐ Alg-1
+      Given N points
+      Find the Minimum Area Rectangle
+      ☐ Find the Rotated MAR
+    ☐ Alg-2
+      Given 2 point clouds
+      For every point in the first cloud find the closest pair from the second cloud
+      Formula of distance  sqrt( (x2-x1)^2 + (y2-y1)^2 )
+    ☐ Alg-3
+      Given N points
+      For given a point 'q' find the Maximum Area Circle that contains NO other points
+    ☐ Alg-4
+      Given N points
+      Given a point 'q' and distance 'd' find all the points that are inside (<=) the distance 'd'
+    ☐ Alg-5
+      Given N points
+      Find the Minimum Area Triangle
+      ☐ Find the Rotated MAT
+      ☐ Find the MAT so that its point are part of the point cloud
+        ☐ Same but rotated MAT
+    ☐ Alg-6
+      Given 2 point clouds
+      Pair the points so that the sum of the resulting segments will be minimal
+      ☐ Investigate Possible resolution in Alg-2??
+    ☐ Alg-7
+      Given N points
+      Find the Minimum Area Circle
+  ☐ System must be able to create point clouds
+    ☐ With given points N
+    ☐ With given dimension
+    ☐ From file
+      ☐ File with just points data
+      ☐ File with every data @feature
+    ☐ Minimum of 2 point clouds at the same time
+    ☐ Merge two point clouds into one @feature
+  ☐ System must be able to draw point clouds
+  ☐ System must be able to draw shapes for algorithms
+  ☐ System must provide a way to select which algorithm to run
+
+Features/Want:
+  ☐ GUI for algorithm options
+  ☐ Hideable options panel for interactive settings
+  ☐ View one or two point clouds
+  ☐ View: Expand one point cloud to two
+  ☐ View: Merge two point clouds to one
+  ☐ Show and run multiple algorithms on the same point cloud
+  ☐ Reset point cloud to original state
+  ☐ Show two point clouds with different algorithms
+  ☐ Change colours
