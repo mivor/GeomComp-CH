@@ -22,48 +22,27 @@ namespace TestsGeomComp
             stubPointCloudList = new List<Point>();
         }
 
-        private List<Point> _stubThreePoints()
+        private List<List<Point>> _stubThreePoints()
         {
             List<List<Point>> data = new List<List<Point>>();
-            List<Point> stub = new List<Point>();
-            stub.Add(new Point(40, 50));
-            stub.Add(new Point(10, 20));
-            stub.Add(new Point(200, 30));
-            data.Add(stub);
-            return stub;
+            List<Point> stub1 = new List<Point>();
+            stub1.Add(new Point(40, 50));
+            List<Point> stub2 = new List<Point>(stub1);
+            stub2.Add(new Point(10, 20));
+            List<Point> stub3 = new List<Point>(stub2);
+            stub3.Add(new Point(200, 30));
+            data.Add(stub1);
+            data.Add(stub2);
+            data.Add(stub3);
+            return data;
         }
 
         [TestCaseSource("_stubThreePoints")]
-        public void WeakAlg_shouldReturnPoints_forOnePoint()
+        public void WeakAlg_shouldReturnPoints_upToThreepoints(List<Point> _stubPoints)
         {
-            stubPointCloudList.Add(new Point(40,50));
+            chLib.ExecWeakAlg(_stubPoints);
 
-            chLib.ExecWeakAlg(stubPointCloudList);
-
-            Assert.That(chLib.Hull, Is.EqualTo(stubPointCloudList));
-        }
-
-        [Test]
-        public void WeakAlg_shouldReturnPoints_forTwoPoints()
-        {
-            stubPointCloudList.Add(new Point(40, 50));
-            stubPointCloudList.Add(new Point(10, 20));
-
-            chLib.ExecWeakAlg(stubPointCloudList);
-
-            Assert.That(chLib.Hull, Is.EqualTo(stubPointCloudList));
-        }
-
-        [Test]
-        public void WeakAlg_shouldReturnPoints_forThreePoints()
-        {
-            stubPointCloudList.Add(new Point(40, 50));
-            stubPointCloudList.Add(new Point(10, 20));
-            stubPointCloudList.Add(new Point(200, 30));
-
-            chLib.ExecWeakAlg(stubPointCloudList);
-
-            Assert.That(chLib.Hull, Is.EqualTo(stubPointCloudList));
+            Assert.That(chLib.Hull, Is.EqualTo(_stubPoints));
         }
 
         [Test]
