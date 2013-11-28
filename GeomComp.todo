@@ -27,6 +27,16 @@ Requirements/Need:
     ☐ Alg-7
       Given N points
       Find the Minimum Area Circle
+    ☐ Alg-8
+      Plannar sweeping
+    ☐ Alg-9
+      Convex Hull Simple
+    ☐ Alg-10
+      Convec Hull Superior/Inferior
+    ☐ Alg-11
+      Conved Hull Jarnis
+    ☐ Alg-12
+      Convex Hull Scannarea lui Graham
   ☐ System must be able to create point clouds
     ☐ With given points N
     ☐ With given dimension
