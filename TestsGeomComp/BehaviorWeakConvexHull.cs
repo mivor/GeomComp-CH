@@ -10,15 +10,15 @@ using System.Drawing;
 namespace TestsGeomComp
 {
     [TestFixture]
-    public class BehaviorLibConvexHull
+    public class BehaviorWeakConvexHull
     {
-        LibConvexHull chLib;
+        WeakConvexHull weakCH;
         List<Point> stubPointCloudList;
 
         [SetUp]
         public void SetUp()
         {
-            chLib = new LibConvexHull();
+            weakCH = new WeakConvexHull();
             stubPointCloudList = new List<Point>();
         }
 
@@ -40,9 +40,9 @@ namespace TestsGeomComp
         [TestCaseSource("_stubThreePoints")]
         public void WeakAlg_shouldReturnPoints_upToThreepoints(List<Point> _stubPoints)
         {
-            chLib.ExecWeakAlg(_stubPoints);
+            weakCH.ExecWeakAlg(_stubPoints);
 
-            Assert.That(chLib.Hull, Is.EqualTo(_stubPoints));
+            Assert.That(weakCH.Hull, Is.EqualTo(_stubPoints));
         }
 
         [Test]
@@ -53,9 +53,9 @@ namespace TestsGeomComp
             stubPointCloudList.Add(new Point(10, 40));
             stubPointCloudList.Add(new Point(11, 11));
 
-            chLib.ExecWeakAlg(stubPointCloudList);
+            weakCH.ExecWeakAlg(stubPointCloudList);
 
-            Assert.That(chLib.Hull, Is.Not.EqualTo(stubPointCloudList));
+            Assert.That(weakCH.Hull, Is.Not.EqualTo(stubPointCloudList));
         }
     }
 }

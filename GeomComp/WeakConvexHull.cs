@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace GeomComp
 {
-    public class LibConvexHull
+    public class WeakConvexHull
     {
         public List<Point> Hull { get; private set; }
 
