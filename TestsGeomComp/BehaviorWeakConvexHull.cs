@@ -14,12 +14,20 @@ namespace TestsGeomComp
     {
         WeakConvexHull weakCH;
         List<Point> stubPointCloud;
+        List<Point> stubConvexHull;
 
         [SetUp]
         public void SetUp()
         {
             weakCH = new WeakConvexHull();
             stubPointCloud = new List<Point>();
+            stubPointCloud.Add(new Point(10, 10));
+            stubPointCloud.Add(new Point(40, 10));
+            stubPointCloud.Add(new Point(10, 40));
+
+            stubConvexHull = new List<Point>(stubPointCloud);
+
+            stubPointCloud.Add(new Point(11, 11));
         }
 
         private List<List<Point>> _stubThreePoints()
@@ -37,6 +45,14 @@ namespace TestsGeomComp
             return data;
         }
 
+        private List<Point> _stubCollinPoints()
+        {
+            List<Point> data = new List<Point>();
+            data.Add(new Point(10,30));
+            data.Add(new Point(30, 10));
+            return data;
+        }
+
         [TestCaseSource("_stubThreePoints")]
         public void shouldReturnPoints_upToThreepoints(List<Point> _stubPoints)
         {
@@ -48,26 +64,34 @@ namespace TestsGeomComp
         [Test]
         public void shouldNotReturnPoints_forMinFourPoints()
         {
-            stubPointCloud.Add(new Point(10, 10));
-            stubPointCloud.Add(new Point(40, 10));
-            stubPointCloud.Add(new Point(10, 40));
-            stubPointCloud.Add(new Point(11, 11));
-
             weakCH.ExecWeakAlg(stubPointCloud);
 
-            Assert.That(weakCH.Hull, Is.Not.EqualTo(stubPointCloud));
+            Assert.That(weakCH.Hull, Is.Not.EquivalentTo(stubPointCloud));
         }
 
         [Test]
         public void shouldReturnConvexHull_forMinFourPoints()
         {
-            stubPointCloud.Add(new Point(10, 10));
-            stubPointCloud.Add(new Point(40, 10));
-            stubPointCloud.Add(new Point(10, 40));
-            stubPointCloud.Add(new Point(11, 11));
+            weakCH.ExecWeakAlg(stubPointCloud);
 
-            List<Point> stubConvexHull = new List<Point>(stubPointCloud);
-            stubConvexHull.Remove(new Point(11, 11));
+            Assert.That(weakCH.Hull, Is.EquivalentTo(stubConvexHull));
+        }
+
+        [TestCaseSource("_stubCollinPoints")]
+        public void shouldReturnConvexHull_forCollinearPoints(Point p)
+        {
+            stubPointCloud.Add(p);
+
+            weakCH.ExecWeakAlg(stubPointCloud);
+
+            Assert.That(weakCH.Hull, Is.EquivalentTo(stubConvexHull));
+        }
+
+        [Test]
+        public void shouldReturnConvexHull_forTwoCollinearPoints()
+        {
+            stubPointCloud.Add(new Point(10, 30));
+            stubPointCloud.Add(new Point(30, 10));
 
             weakCH.ExecWeakAlg(stubPointCloud);
 
