@@ -21,6 +21,8 @@ namespace GeomComp
             int delta = (p.X * q.Y) + (p.Y * find.X) + (q.X * find.Y)
                         - (find.X * q.Y) - (q.X * p.Y) - (p.X * find.Y);
             return delta >= 0;
+            // cand r is inside [pq] keep pq
+            //else discard
         }
 
         public void ExecWeakAlg(List<Point> pointList)
