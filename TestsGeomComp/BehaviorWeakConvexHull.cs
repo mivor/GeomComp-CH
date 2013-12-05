@@ -71,7 +71,7 @@ namespace TestsGeomComp
 
             weakCH.ExecWeakAlg(stubPointCloud);
 
-            Assert.That(weakCH.Hull, Is.EqualTo(stubConvexHull));
+            Assert.That(weakCH.Hull, Is.EquivalentTo(stubConvexHull));
         }
     }
 }
