@@ -57,5 +57,21 @@ namespace TestsGeomComp
 
             Assert.That(weakCH.Hull, Is.Not.EqualTo(stubPointCloud));
         }
+
+        [Test]
+        public void shouldReturnConvexHull_forMinFourPoints()
+        {
+            stubPointCloud.Add(new Point(10, 10));
+            stubPointCloud.Add(new Point(40, 10));
+            stubPointCloud.Add(new Point(10, 40));
+            stubPointCloud.Add(new Point(11, 11));
+
+            List<Point> stubConvexHull = new List<Point>(stubPointCloud);
+            stubConvexHull.Remove(new Point(11, 11));
+
+            weakCH.ExecWeakAlg(stubPointCloud);
+
+            Assert.That(weakCH.Hull, Is.EqualTo(stubConvexHull));
+        }
     }
 }
