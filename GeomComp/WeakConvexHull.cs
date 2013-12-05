@@ -11,9 +11,14 @@ namespace GeomComp
     {
         public List<Point> Hull { get; private set; }
 
+        public WeakConvexHull()
+        { 
+            this.Hull = new List<Point>();
+        }
+
         private bool isPointAtRightSide(Point p, Point q, Point find)
         { 
-            int delta = (p.X * q.X) + (p.Y * find.X) + (q.X * find.Y)
+            int delta = (p.X * q.Y) + (p.Y * find.X) + (q.X * find.Y)
                         - (find.X * q.Y) - (q.X * p.Y) - (p.X * find.Y);
             return delta >= 0;
         }
@@ -37,14 +42,18 @@ namespace GeomComp
                         {
                             if ( (r != q) && (r != p))
                             {
-                                if (isPointAtRightSide(p, q, r)) valid = false;
+                                if (isPointAtRightSide(p, q, r))
+                                {
+                                    valid = false;
+                                    break;
+                                }
                             }
                         }
 
                         if (valid)
                         {
-                            if (this.Hull.Contains(p)) this.Hull.Add(q);
-                            else this.Hull.Add(p);
+                            if (! this.Hull.Contains(p)) this.Hull.Add(p);
+                            if (! this.Hull.Contains(q)) this.Hull.Add(q);
                         }
                     }
                 }
