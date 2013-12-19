@@ -18,6 +18,7 @@ namespace GeomComp
 
         private bool isPointAtRightSide(Point p, Point q, Point find)
         { 
+            // TODO: use vector cross product!!
             int delta = (p.X * q.Y) + (p.Y * find.X) + (q.X * find.Y)
                         - (find.X * q.Y) - (q.X * p.Y) - (p.X * find.Y);
             return delta >= 0;
